@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour {
     public Boundary boundary;
     public float tilt;
     public GameObject shot;
-    public Transform shotSpawn;
+    public Transform[] shotSpawns;
     public float fireRate;
     private float nextFire;
 
@@ -31,8 +31,13 @@ public class PlayerController : MonoBehaviour {
         {
             nextFire = Time.time + fireRate;
             //GameObject clone = 
-            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);// as GameObject;
+            foreach (var shotSpawn in shotSpawns)
+            {
+                Instantiate(shot, shotSpawn.position, shotSpawn.rotation);// as GameObject;
+
+            }
             au.Play();
+
         }
     }
 
